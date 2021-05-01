@@ -60,6 +60,15 @@ namespace pm
 		}
 	}
 
+	pm::Account& getAccountRef(std::string name)
+	{
+		for (int i = 0, n = accountList.size(); i < n; i++)
+		{
+			if (name == accountList[i].accountName)
+				return accountList[i];
+		}
+	}
+
 	pm::Account getAccount(std::string name)
 	{
 		for (int i = 0, n = accountList.size(); i < n; i++)
@@ -73,7 +82,7 @@ namespace pm
 	{
 		for (int i = 0, n = accountList.size(); i < n; i++)
 		{
-			if (name == accountList[i].accountName)
+			if (pm::lowerString(name) == pm::lowerString(accountList[i].accountName))
 				return true;
 		}
 		return false;
@@ -84,7 +93,10 @@ namespace pm
 		for (int i = 0, n = accountList.size(); i < n; i++)
 		{
 			if (name == accountList[i].accountName)
-				accountList.erase(accountList.begin() + (i));
+			{
+				accountList.erase(accountList.begin() + i);
+				break;
+			}
 		}
 	}
 }

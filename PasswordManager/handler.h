@@ -68,8 +68,11 @@ namespace pm
 				std::string accountPass;
 				pm::Account myAccount;
 
-				sayn("Enter account name: ");
-				getline(std::cin, accountName);
+				do
+				{
+					sayn("Enter account name: ");
+					getline(std::cin, accountName);
+				} while (doesAccountExist(accountName));
 
 				sayn("Enter account user: ");
 				getline(std::cin, accountUser);
@@ -92,7 +95,7 @@ namespace pm
 				div();
 				sayn("Enter account name: ");
 				std::string accName;
-				std::cin >> accName;
+				getline(std::cin, accName);
 
 				if (pm::doesAccountExist(accName))
 				{
@@ -124,14 +127,14 @@ namespace pm
 				div();
 				sayn("Enter account name to get info of: ");
 				std::string accName;
-				std::cin >> accName;
+				getline(std::cin, accName);
 
 				if (pm::doesAccountExist(accName))
 				{
-					pm::Account requestedAcc = getAccount(accName);
-					sayn("Account Name: " + requestedAcc.accountName);
-					sayn("Account User: " + requestedAcc.getUser());
-					sayn("Account Pass: " + requestedAcc.getPass());
+					pm::Account requestedAcc = pm::getAccount(accName);
+					say("Account Name: " + requestedAcc.accountName);
+					say("Account User: " + requestedAcc.getUser());
+					say("Account Pass: " + requestedAcc.getPass());
 				}
 				else
 				{
@@ -147,20 +150,21 @@ namespace pm
 				div();
 				sayn("Enter account name to edit: ");
 				std::string accName;
-				std::cin >> accName;
+				getline(std::cin, accName);
 
 				if (pm::doesAccountExist(accName))
 				{
-					pm::Account requestedAcc = getAccount(accName);
+					pm::Account &requestedAcc = pm::getAccountRef(accName);
 					char tempInput;
 					std::string tempInput2;
 					say("What property of " + requestedAcc.accountName + " would you like to edit?");
-					sayn("account name: n | user: u | password: p");
+					sayn("account name: n | user: u | password: p? ");
 					std::cin >> tempInput;
 					if (tempInput == 'n')
 					{
+						pm::clearCinCache();
 						sayn("What would you like to change account name to? ");
-						std::cin >> tempInput2;
+						getline(std::cin, tempInput2);
 						if (!tempInput2.empty())
 						{
 							requestedAcc.accountName = tempInput2;
@@ -174,7 +178,8 @@ namespace pm
 					else if (tempInput == 'u')
 					{
 						sayn("What would you like to change account user to? ");
-						std::cin >> tempInput2;
+						pm::clearCinCache();
+						getline(std::cin, tempInput2);
 						if (!tempInput2.empty())
 						{
 							requestedAcc.setUser(tempInput2);
@@ -188,7 +193,8 @@ namespace pm
 					else if (tempInput == 'p')
 					{
 						sayn("What would you like to change account password to? ");
-						std::cin >> tempInput2;
+						pm::clearCinCache();
+						getline(std::cin, tempInput2);
 						if (!tempInput2.empty())
 						{
 							requestedAcc.setPass(tempInput2);
