@@ -18,7 +18,7 @@ namespace pm
 			do
 			{
 				chosenChar = ALPHABET[random(0, 26)];
-			} while (output.find(chosenChar) != std::string::npos);
+			} while (output.find(chosenChar) != std::string::npos && !isalpha(chosenChar));
 			output.push_back(chosenChar);
 		}
 
