@@ -2,6 +2,7 @@
 #include <iostream>
 #include <ctype.h>
 #include <string>
+#include <random>
 
 #include "picosha2.h"
 
@@ -85,4 +86,12 @@ namespace pm
 		div();
 		newline();
 	}
+
+	int random(int min, int max)
+	{
+		std::default_random_engine gen(std::random_device{}());
+		std::uniform_int_distribution<int> dist(min, max);
+		return dist(gen);
+	}
+
 }

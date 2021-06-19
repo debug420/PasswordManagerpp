@@ -1,9 +1,29 @@
 #pragma once
 #include <string>
 #include <ctype.h>
+#include <vector>
 
 namespace pm
 {
+
+	const char ALPHABET[27] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+	std::string genRandomEncryptionKey()
+	{
+		std::string output;
+
+		for (int i = 0; i < 27; i++)
+		{
+			char chosenChar;
+			do
+			{
+				chosenChar = ALPHABET[random(0, 26)];
+			} while (output.find(chosenChar) != std::string::npos);
+			output.push_back(chosenChar);
+		}
+
+		return output;
+	}
 
 	std::string encrypt(std::string value, std::string key)
 	{
@@ -27,7 +47,6 @@ namespace pm
 	std::string decrypt(std::string value, std::string key)
 	{
 		char output[100] = "";
-		std::string abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 		for (int ii = 0, nn = value.length(); ii < nn; ii++)
 		{
@@ -48,7 +67,7 @@ namespace pm
 				}
 				if (!(indexPos == -1))
 				{
-					output[ii] = islower(value[ii])? tolower(abc[indexPos]) : toupper(abc[indexPos]);
+					output[ii] = islower(value[ii])? tolower(ALPHABET[indexPos]) : toupper(ALPHABET[indexPos]);
 				}
 			}
 

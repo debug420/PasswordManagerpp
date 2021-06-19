@@ -76,9 +76,19 @@ int main(int argc, char* argv[])
 	{
 		do
 		{
-			sayn("Encrypt Key: ");
+
+			sayn("Encrypt Key (TIP: say \"genrandom\" to generate a random key): ");
 			getline(std::cin, encryptKey);
+			if (encryptKey == "genrandom")
+			{
+				encryptKey = pm::genRandomEncryptionKey();
+				std::cout << "Encryption key set to: " << encryptKey << std::endl;
+				say("Make sure to save the encryption key above as it will be used to encrypt and decrypt your passwords.");
+				break;
+			}
+
 		} while (!pm::isKeyValid(encryptKey) || encryptKey.empty());
+
 	}
 
 	pm::loadAccounts(encryptKey);
