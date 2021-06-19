@@ -9,7 +9,7 @@ Once you have downloaded PM++, you will see an exe file. Simple make a folder on
 It will ask you to make a password as a first time setup. If you forget this password, it is theoritically not possible to retrieve the passwords, however, due to poor design, it is possible. That however won't be covered in this tutorial.
 
 After performing first time set up, you will be prompted for an encryption key to use PM++ with. 
-To generate an encryption and decryption key, simply refer to: https://www.dcode.fr/deranged-alphabet-generator
+To generate an encryption and decryption key, simply refer to: https://www.dcode.fr/deranged-alphabet-generator or enter genrandom when prompted to generate a random valid encryption key. Make sure to take note of this.
 This will return a deranged alphabet which you can use as a key. Everytime you launch PM++, you will have to provide this key so make sure to keep it safe. If you do not want to enter encryption key, refer to "How to not enter encryption key everytime".
 
 Once logged in, simply read the commands available and experiment with them.
